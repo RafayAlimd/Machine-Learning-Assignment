@@ -1,0 +1,73 @@
+{
+  "ordinal_cols": [
+    "Age_band_of_driver",
+    "Driving_experience",
+    "Service_year_of_vehicle",
+    "Educational_level"
+  ],
+  "ordinal_categories": {
+    "Age_band_of_driver": [
+      "Under 18",
+      "18-30",
+      "31-50",
+      "Over 51",
+      "Unknown"
+    ],
+    "Driving_experience": [
+      "No Licence",
+      "Below 1yr",
+      "1-2yr",
+      "2-5yr",
+      "5-10yr",
+      "Above 10yr",
+      "Unknown"
+    ],
+    "Service_year_of_vehicle": [
+      "Below 1yr",
+      "1-2yr",
+      "2-5yrs",
+      "5-10yrs",
+      "Above 10yr",
+      "Unknown"
+    ],
+    "Educational_level": [
+      "Illiterate",
+      "Writing & reading",
+      "Elementary school",
+      "Junior high school",
+      "High school",
+      "Above high school",
+      "Unknown"
+    ]
+  },
+  "nominal_cols": [
+    "Day_of_week",
+    "Sex_of_driver",
+    "Vehicle_driver_relation",
+    "Type_of_vehicle",
+    "Owner_of_vehicle",
+    "Defect_of_vehicle",
+    "Area_accident_occured",
+    "Lanes_or_Medians",
+    "Road_allignment",
+    "Types_of_Junction",
+    "Road_surface_type",
+    "Road_surface_conditions",
+    "Light_conditions",
+    "Weather_conditions",
+    "Type_of_collision",
+    "Vehicle_movement",
+    "Cause_of_accident"
+  ],
+  "numeric_cols": [
+    "Number_of_vehicles_involved",
+    "Number_of_casualties",
+    "hour_of_day"
+  ],
+  "class_names": [
+    "Fatal injury",
+    "Serious Injury",
+    "Slight Injury"
+  ],
+  "target": "Accident_severity"
+}

@@ -1,0 +1,6 @@
+Model,AUC_Fatal injury,AUC_Serious Injury,AUC_Slight Injury
+Logistic Regression,0.5888,0.5462,0.5465
+Decision Tree,0.6506,0.5301,0.534
+KNN,0.5413,0.5085,0.4977
+Gaussian Naive Bayes,0.476,0.5165,0.4985
+Random Forest,0.6846,0.6629,0.6336
