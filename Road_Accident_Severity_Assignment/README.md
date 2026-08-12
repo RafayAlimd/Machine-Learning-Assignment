@@ -115,6 +115,6 @@ The training script creates the model files, `test_data.csv`, comparison CSV fil
 
 ## 12. Submission Links
 
-- GitHub Repository: **ADD LINK**
+- GitHub Repository: https://github.com/RafayAlimd/Machine-Learning-Assignment/tree/main/Road_Accident_Severity_Assignment
 - Live Streamlit App: **ADD LINK**
 - BITS Virtual Lab Screenshot: **ADD TO FINAL PDF**
