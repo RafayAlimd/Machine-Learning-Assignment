@@ -97,11 +97,11 @@ The Streamlit application provides:
 - Classification report
 - Prediction preview
 
-Live app link: **ADD YOUR STREAMLIT LINK HERE**
+Live app link: https://machine-learning-assignment-zx3srknbrmrg3ke3fccbe3.streamlit.app/
 
 ## 10. GitHub Repository
 
-Repository link: **ADD YOUR GITHUB LINK HERE**
+Repository link: https://github.com/RafayAlimd/Machine-Learning-Assignment/tree/main/Road_Accident_Severity_Assignment
 
 ## 11. How to Run
 
@@ -112,9 +112,3 @@ streamlit run app.py
 ```
 
 The training script creates the model files, `test_data.csv`, comparison CSV files, and metadata required by the Streamlit application.
-
-## 12. Submission Links
-
-- GitHub Repository: https://github.com/RafayAlimd/Machine-Learning-Assignment/tree/main/Road_Accident_Severity_Assignment
-- Live Streamlit App: **ADD LINK**
-- BITS Virtual Lab Screenshot: **ADD TO FINAL PDF**
