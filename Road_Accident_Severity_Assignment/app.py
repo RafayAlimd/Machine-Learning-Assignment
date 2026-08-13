@@ -92,7 +92,21 @@ model_name = st.sidebar.selectbox(
     "Choose a classification model",
     list(MODEL_FILES.keys()),
 )
-
+st.sidebar.subheader("Evaluation dataset")
+test_data_path = BASE / "test_data.csv"
+if test_data_path.exists():
+    with open(test_data_path, "rb") as f:
+        test_data_bytes = f.read()
+    st.sidebar.download_button(
+        label="Download test_data.csv",
+        data=test_data_bytes,
+        file_name="test_data.csv",
+        mime="text/csv",
+        help="Download the evaluation dataset generated for model testing.",
+    )
+else:
+    st.sidebar.warning("No test_data.csv found yet. Training will generate it automatically.")
+    
 uploaded = st.file_uploader(
     "Upload test_data.csv",
     type=["csv"],
@@ -100,7 +114,7 @@ uploaded = st.file_uploader(
 )
 
 if uploaded is None:
-    st.info("Upload the generated test_data.csv to evaluate a model.")
+    st.info("Upload the generated test_data.csv to evaluate a model, or download it from the sidebar if it is already available.")
     st.markdown(
         """
         **Required workflow**
