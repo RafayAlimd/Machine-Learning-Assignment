@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
-
+import subprocess
+import sys
 import joblib
 
 from rta_pipeline import SMOTENCFrame
@@ -30,13 +31,48 @@ MODEL_FILES = {
     "Gaussian Naive Bayes": "gaussian_naive_bayes.pkl",
     "Random Forest": "random_forest.pkl",
 }
+req_artifacts = [
+    BASE / "label_encoder.pkl",
+    BASE / "fitted_pipelines.pkl",
+    *[BASE / "model" / filename for filename in MODEL_FILES.values()],
+]
+
+def ensure_training_artifacts():
+    missing_files = [path for path in req_artifacts if not path.exists()]
+    if not missing_files:
+        return
+
+    st.warning("Required model artifacts are missing. Training them now so the app can continue. This may take a minute or two.")
+
+    train_script = BASE / "train_models.py"
+    if not train_script.exists():
+        st.error("The training script is missing, so the app cannot rebuild the model artifacts.")
+        st.stop()
+
+    try:
+        subprocess.run([sys.executable, str(train_script)],cwd=str(BASE),check=True)
+    except subprocess.CalledProcessError as exc:
+        st.error(f"Model training failed with exit code {exc.returncode}.")
+        st.stop()
+
+    remaining_missing = [path for path in req_artifacts if not path.exists()]
+    if remaining_missing:
+        st.error("Training finished but some required artifacts are still missing:")
+        st.write(remaining_missing)
+        st.stop()
+
+
+ensure_training_artifacts()
 
 @st.cache_resource
 def load_artifacts():
-    pipelines = {
-        name: joblib.load(BASE / "model" / filename)
-        for name, filename in MODEL_FILES.items()
-    }
+    if (BASE / "fitted_pipelines.pkl").exists():
+        pipelines = joblib.load(BASE / "fitted_pipelines.pkl")
+    else:
+        pipelines = {
+            name: joblib.load(BASE / "model" / filename)
+            for name, filename in MODEL_FILES.items()
+        }
     encoder = joblib.load(BASE / "label_encoder.pkl")
     with open(BASE / "feature_metadata.json", "r", encoding="utf-8") as f:
         metadata = json.load(f)
